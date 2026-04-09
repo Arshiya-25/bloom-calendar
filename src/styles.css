@@ -1,0 +1,232 @@
+:root {
+  --accent: #c17a5a;
+  --accent2: #8a6bbf;
+  --accent-rgb: 193, 122, 90;
+  --bg: #faf8f5;
+  --bg2: #f0ede7;
+  --bg3: #e5e1d9;
+  --surface: #ffffff;
+  --surface2: #fdfbf8;
+  --text: #1e1a15;
+  --text2: #5c574e;
+  --text3: #9a958b;
+  --border: rgba(0, 0, 0, 0.06);
+  --border2: rgba(0, 0, 0, 0.11);
+  --shadow: 0 1px 16px rgba(0, 0, 0, 0.05);
+  --shadow2: 0 8px 36px rgba(0, 0, 0, 0.1);
+  --radius: 16px;
+  --hero-grad: linear-gradient(135deg, #f5e6d3 0%, #e8d5c4 50%, #d4bfb0 100%);
+  --hero-text: rgba(0, 0, 0, 0.72);
+  --hero-sub: rgba(0, 0, 0, 0.42);
+}
+
+[data-theme="dark"] {
+  --bg: #141210;
+  --bg2: #1c1a16;
+  --bg3: #26231d;
+  --surface: #1e1b17;
+  --surface2: #242019;
+  --text: #ece8df;
+  --text2: #a39b90;
+  --text3: #6b6459;
+  --border: rgba(255, 255, 255, 0.06);
+  --border2: rgba(255, 255, 255, 0.1);
+  --shadow: 0 1px 16px rgba(0, 0, 0, 0.3);
+  --shadow2: 0 8px 36px rgba(0, 0, 0, 0.45);
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: "Outfit", sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  min-height: 100vh;
+  transition:
+    background 0.35s ease,
+    color 0.35s ease;
+  -webkit-font-smoothing: antialiased;
+}
+
+#root {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+button {
+  cursor: pointer;
+  border: none;
+  background: none;
+  font-family: inherit;
+  color: inherit;
+}
+input,
+textarea {
+  font-family: inherit;
+  color: inherit;
+}
+
+::-webkit-scrollbar {
+  width: 5px;
+  height: 5px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background: var(--bg3);
+  border-radius: 3px;
+}
+
+/* ── Animations ── */
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(6px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@keyframes scaleIn {
+  from {
+    opacity: 0;
+    transform: scale(0.97) translateY(4px);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+}
+
+@keyframes scaleOut {
+  from {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+  to {
+    opacity: 0;
+    transform: scale(0.97) translateY(4px);
+  }
+}
+
+@keyframes backdropIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes backdropOut {
+  from { opacity: 1; }
+  to { opacity: 0; }
+}
+
+@keyframes slideDown {
+  from {
+    opacity: 0;
+    transform: translateY(-8px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+.bloom-main {
+  animation: fadeIn 0.4s ease both;
+}
+
+.modal-backdrop {
+  animation: backdropIn 0.2s ease both;
+}
+.modal-backdrop.closing {
+  animation: backdropOut 0.18s ease both;
+}
+
+.modal-inner {
+  animation: scaleIn 0.25s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+.modal-inner.closing {
+  animation: scaleOut 0.18s ease both;
+}
+
+.dropdown {
+  animation: slideDown 0.2s ease both;
+}
+
+/* ── Day cells — fixed height, no reflow ── */
+
+.day-cell {
+  height: 82px;
+  transition:
+    background 0.12s ease,
+    box-shadow 0.12s ease;
+  overflow: hidden;
+}
+.day-cell:hover {
+  background: var(--bg2) !important;
+  box-shadow: 0 1px 8px rgba(0, 0, 0, 0.04);
+}
+.day-cell:active {
+  opacity: 0.92;
+}
+
+.day-empty {
+  height: 82px;
+}
+
+/* ── Buttons ── */
+
+.nav-btn {
+  transition:
+    background 0.15s,
+    transform 0.1s;
+}
+.nav-btn:hover {
+  background: var(--bg3) !important;
+}
+.nav-btn:active {
+  transform: scale(0.92);
+}
+
+.chip {
+  transition:
+    opacity 0.15s,
+    transform 0.1s;
+}
+.chip:hover {
+  opacity: 0.85;
+  transform: scale(1.02);
+}
+
+textarea:focus,
+input:focus {
+  border-color: var(--accent) !important;
+  box-shadow: 0 0 0 3px rgba(var(--accent-rgb), 0.12) !important;
+}
+
+.tag-btn {
+  transition: all 0.15s ease;
+}
+.tag-btn:hover {
+  filter: brightness(0.95);
+}
+
+.accent-btn {
+  transition:
+    opacity 0.15s,
+    transform 0.1s,
+    box-shadow 0.15s;
+}
+.accent-btn:hover {
+  opacity: 0.88;
+  box-shadow: 0 4px 16px rgba(var(--accent-rgb), 0.3);
+}
+.accent-btn:active {
+  transform: scale(0.97);
+}
